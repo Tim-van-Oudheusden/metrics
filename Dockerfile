@@ -5,6 +5,12 @@ FROM node:20-bookworm-slim
 COPY . /metrics
 WORKDIR /metrics
 
+# Environment variables
+# Puppeteer uses the system google-chrome-stable, so its own browser download is skipped
+# (it is unused and its install script can stall on the open download connection)
+ENV PUPPETEER_SKIP_DOWNLOAD=true
+ENV PUPPETEER_BROWSER_PATH=google-chrome-stable
+
 # Setup
 RUN chmod +x /metrics/source/app/action/index.mjs \
   # Install latest chrome dev package, fonts to support major charsets and skip chromium download on puppeteer install
@@ -28,10 +34,6 @@ RUN chmod +x /metrics/source/app/action/index.mjs \
   # Install node modules and rebuild indexes
   && npm ci \
   && npm run build
-
-# Environment variables
-ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
-ENV PUPPETEER_BROWSER_PATH "google-chrome-stable"
 
 # Execute GitHub action
 ENTRYPOINT node /metrics/source/app/action/index.mjs
