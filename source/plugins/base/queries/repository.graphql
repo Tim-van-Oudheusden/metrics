@@ -9,6 +9,7 @@ query BaseRepository {
         login
       }
       isFork
+      isPrivate
       forkCount
       watchers {
         totalCount

@@ -31,6 +31,14 @@ inputs:
     example: my-repo-1, my-repo-2, owner/repo-3, ...
     inherits: repositories_skipped
 
+  plugin_lines_private:
+    description: |
+      Include private repositories
+
+      When disabled, private repositories are excluded from all sections (totals, repositories and history)
+    type: boolean
+    default: yes
+
   plugin_lines_sections:
     description: |
       Displayed sections

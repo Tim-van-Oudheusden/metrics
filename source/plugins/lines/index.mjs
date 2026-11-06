@@ -7,7 +7,7 @@ export default async function({login, data, imports, rest, q, account}, {enabled
       return null
 
     //Load inputs
-    let {skipped, sections, "repositories.limit": _repositories_limit, "history.limit": _history_limit, delay} = imports.metadata.plugins.lines.inputs({data, account, q})
+    let {skipped, private: _private, sections, "repositories.limit": _repositories_limit, "history.limit": _history_limit, delay} = imports.metadata.plugins.lines.inputs({data, account, q})
     skipped.push(...data.shared["repositories.skipped"])
 
     //Context
@@ -20,7 +20,7 @@ export default async function({login, data, imports, rest, q, account}, {enabled
     }
 
     //Repositories
-    const repositories = data.user.repositories.nodes.map(({name: repo, owner: {login: owner}}) => ({repo, owner})).sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt)) ?? []
+    const repositories = data.user.repositories.nodes.filter(({isPrivate}) => _private || !isPrivate).map(({name: repo, owner: {login: owner}}) => ({repo, owner})).sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt)) ?? []
 
     //Get contributors stats from repositories
     console.debug(`metrics/compute/${login}/plugins > lines > querying api`)

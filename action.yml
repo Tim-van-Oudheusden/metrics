@@ -383,6 +383,10 @@ inputs:
     description: Skipped repositories
     default: <default-value>
 
+  plugin_lines_private:
+    description: Include private repositories
+    default: <default-value>
+
   plugin_lines_sections:
     description: Displayed sections
     default: <default-value>

@@ -56,6 +56,18 @@ All product and company names are trademarks™ or registered® trademarks of th
 <br></td>
   </tr>
   <tr>
+    <td nowrap="nowrap"><h4><code>plugin_lines_private</code></h4></td>
+    <td rowspan="2"><p>Include private repositories</p>
+<p>When disabled, private repositories are excluded from all sections (totals, repositories and history)</p>
+<img width="900" height="1" alt=""></td>
+  </tr>
+  <tr>
+    <td nowrap="nowrap">✨ On <code>master</code>/<code>main</code><br>
+<b>type:</b> <code>boolean</code>
+<br>
+<b>default:</b> yes<br></td>
+  </tr>
+  <tr>
     <td nowrap="nowrap"><h4><code>plugin_lines_sections</code></h4></td>
     <td rowspan="2"><p>Displayed sections</p>
 <ul>
